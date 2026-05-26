@@ -1,0 +1,22 @@
+{
+"name": "Agents Course — Claude Code",
+"image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+"features": {
+"ghcr.io/devcontainers/features/node:1": {},
+"ghcr.io/anthropics/devcontainer-features/claude-code:1": {}
+},
+"remoteUser": "node",
+"containerEnv": {
+"ANTHROPIC_BASE_URL": "https://router.huggingface.co",
+"ANTHROPIC_AUTH_TOKEN": "${localEnv:HF_TOKEN}",
+  "ANTHROPIC_API_KEY": "${localEnv:HF_TOKEN}",
+"ANTHROPIC_DEFAULT_OPUS_MODEL": "zai-org/GLM-5.1",
+"ANTHROPIC_DEFAULT_SONNET_MODEL":"zai-org/GLM-5.1",
+"ANTHROPIC_DEFAULT_HAIKU_MODEL":"google/gemma-4-31B-it:together",
+"CLAUDE_CODE_SUBAGENT_MODEL": "google/gemma-4-31B-it:together"
+},
+"mounts": [
+"source=claude-code-config-${devcontainerId},target=/home/node/.claude,type=volume"
+],
+"postCreateCommand": "pip3 install huggingface_hub smolagents requests python-dotenv 2>/dev/null || true"
+}
